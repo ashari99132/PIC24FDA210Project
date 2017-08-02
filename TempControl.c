@@ -89,11 +89,11 @@ void Run_PID_Heater(void)
  		if(DutyCycle>0.0)OutputsFlag|=MAIN_HEATER_FLAG;
 		if (Mode==DECON_MODE)
  		{
- 			Update_Zone2_OC4_PWM(0.75*DutyCycle);
-			Update_Zone4_OC6_PWM(100.0);
+ 			Update_Zone2_OC4_PWM(0.5*DutyCycle);
+			Update_Zone4_OC6_PWM(0.5*DutyCycle);
                         //for door heater only
                         //Update_Zone3_OC5_PWM(DutyCycle);
-                        if((0.75*DutyCycle)>0.0)OutputsFlag|=BASE_HEATER_FLAG;
+                        if((0.6*DutyCycle)>0.0)OutputsFlag|=BASE_HEATER_FLAG;
 		}
 		else 
  		{
@@ -417,14 +417,14 @@ void RTCEventPumpChamberOn(void)
  float Time=(float)UV_RunTimer*PUMP_DCY_PERIOD/100.0;
  if(Time>0.0)
  {
- SetOutPut(J13_ZONE6_HTR,ON);
+ SetOutPut(J37_LEDDRIVER,ON);
  OutputsFlag|=PUMP_FLAG;
  SetFlag(OMB_OUTPUTS_FLAG,OutputsFlag);
  StartTimerRTC(PUMP_OFF_ID, ONCE, Time*MINUTE);
  }
  else
  {
-     SetOutPut(J13_ZONE6_HTR,OFF);
+     SetOutPut(J37_LEDDRIVER,OFF);
      StartTimerRTC(PUMP_OFF_ID, ONCE, 1*MINUTE);
  }
 }
@@ -435,13 +435,26 @@ void RTCEventPumpChamberOff(void)
  float Time=((100.0-(float)UV_RunTimer)*PUMP_DCY_PERIOD/100.0);
  if(Time<PUMP_DCY_PERIOD && Time>0.0)
  {
- SetOutPut(J13_ZONE6_HTR,OFF);
+ SetOutPut(J37_LEDDRIVER,OFF);
  OutputsFlag&=~PUMP_FLAG;
  SetFlag(OMB_OUTPUTS_FLAG,OutputsFlag);
  StartTimerRTC(PUMP_ON_ID, ONCE, Time*MINUTE);
  }
  else
  {
+  SetOutPut(J37_LEDDRIVER,ON);
   StartTimerRTC(PUMP_ON_ID, ONCE, 1*MINUTE);
  }
+}
+
+void Event_Temp_Supervisory(void)
+{
+    float Error;
+    Error=(Tsp/100.0)-(ActualTcv+(Tcv_Offset/100.0));
+    if(Error>=0.5)
+    {
+        asm("RESET");
+
+    }
+    else StartTimerRTC(TEMP_SUPERVISORY,ONCE,15*MINUTE);
 }

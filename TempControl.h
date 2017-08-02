@@ -62,6 +62,6 @@ void EventColdStartUp(void);
 
 void RTCEventPumpChamberOn(void);
 void RTCEventPumpChamberOff(void);
-
+void Event_Temp_Supervisory(void);
 
 #endif

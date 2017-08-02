@@ -11,7 +11,8 @@ EVENT RTC_Event[TOTAL_EVENT_RTC]=
 			{NORMAL_MODE_ID,EVENT_EN,ONCE,2*MINUTE,INIT_RUNTIME,Set_NormalMode},
 			{CTL_ENABLE_ID,EVENT_DIS,ONCE,2*MINUTE,INIT_RUNTIME,Event_Control_Enabled},
                         {PUMP_ON_ID,EVENT_DIS,ONCE,10*MINUTE,INIT_RUNTIME,RTCEventPumpChamberOn},
-                        {PUMP_OFF_ID,EVENT_DIS,ONCE,10*MINUTE,INIT_RUNTIME,RTCEventPumpChamberOff}
+                        {PUMP_OFF_ID,EVENT_DIS,ONCE,10*MINUTE,INIT_RUNTIME,RTCEventPumpChamberOff},
+                        {TEMP_SUPERVISORY,EVENT_EN,ONCE,30*MINUTE,INIT_RUNTIME,Event_Temp_Supervisory}
                 //        {COLD_CTL_ENABLE_ID,EVENT_DIS,ONCE,1*MINUTE,INIT_RUNTIME,EventColdStartUp},
  
 		};	

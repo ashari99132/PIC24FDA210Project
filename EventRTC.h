@@ -15,6 +15,7 @@ CTL_ENABLE_ID,
 COLD_CTL_ENABLE_ID,
 PUMP_ON_ID,
 PUMP_OFF_ID,
+TEMP_SUPERVISORY
 };
 void EventRTC (void);
 void EventIntRTC (void);

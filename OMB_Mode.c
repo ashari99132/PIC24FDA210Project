@@ -119,7 +119,7 @@ void Set_DeconMode (void)
     WORD *pTsp;
     //WORD EMLockON=ReturnFlag(OMB_OUTPUTS_FLAG);
         pTsp=&Tsp;
-        *pTsp=20000;
+        *pTsp=18500;
         pTcv_Offset=&Tcv_Offset;
 	*pTcv_Offset+=1500;
 
@@ -196,8 +196,8 @@ else SetOutPut(J10_ZONE4_HTR,OFF);
 if (OutputsFlag&TUBE_HEATER_FLAG)SetOutPut(J14_ZONE5_HTR,ON);				
 else SetOutPut(J14_ZONE5_HTR,OFF);				
  
-if (OutputsFlag&PUMP_FLAG)SetOutPut(J13_ZONE6_HTR,ON);
-else SetOutPut(J13_ZONE6_HTR,OFF); 
+if (OutputsFlag&PUMP_FLAG)SetOutPut(J37_LEDDRIVER,ON);
+else SetOutPut(J37_LEDDRIVER,OFF);
 
 if (OutputsFlag&DECON_FAN_FLAG)SetOutPut(J53_DECON_FAN,ON);
 else SetOutPut(J53_DECON_FAN,OFF);

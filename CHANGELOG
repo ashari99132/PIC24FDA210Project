@@ -1,8 +1,116 @@
-v2.0 
-- remove UV_RUNTIME_RTC event from RTC event
-- Add Pump on pump off RTC event. To make 
-  pump on and off variably in one hour period.
-v1.9
- - intended only for CLS-T-RH model
-v1.8
- - First commit from stable release
+Release v1.0 - 26 October 2015
+	- First Release
+
+Release v1.1 - 17 May 2016
+	- Make the base only use 75% power over main when
+	  sterilization. 	
+Release v1.2 - 18 May 2016
+	- Make the sterilization set point to 180oC. This
+	  is for NPD test. 
+Release v1.3 - 18 May 2016
+	- Make the second heater only using 90% power over 
+	  main during sterilization. This is for NPD test. 
+Release v1.4 - 19 May 2016
+	- Make the sterilization point to 200oC.
+	- base is 75% power over main.
+	- decon heater is 95% power over main.
+ 	- make the variable for reference becoming const
+	  to solve the offset variable and set point 
+	  variable changing by itself during operation. 
+Release v1.5 - 17 June 2016
+	- add solenoid valve as actuator in RH control to 
+	  help to reduce the %RH faster.
+Release v1.6 - 1 August 2016
+	- At file OMB_Digital Inputs.c add fix base 10% and 
+  	  fix secondary 5% during door open. and turn off 
+          only the base after the door isclosed. 
+	- At file O2_Control.c remove the O2 set point 
+          maximum condition to control O2 level. Remove as
+	  well the O2 has reach set point flag for evaluating
+	  O2 alarm system. Then change the port for backup 
+	  solenoid from  J23 using J56
+        - At OMB_Mode.c add to turn off all PID heaters and turn
+ 	  on the fail safe relay each time come back to normal 
+          mode operation. 
+        - At OMB_UTI_Comm.c in Event_Int_I2C_Write_Reg, the 
+          change initiated by display board for register IRCO2_OFFSET,
+          CO2SP, RHSP, O2SP, TSP is done immediately in the function,
+          executed by interrupt.
+	  While before it was polled in the  main event. 
+	- At file RH_Control.c, the RH set point change poll is removed. 
+          And solenoid valve is now using J23 whereas bfore is using J56.
+        - At file CO2_Control.c, the CO2 set point change poll is removed.
+          The maximum set point limit to run to CO2 control routine
+          is removed. And the set point reach flag condition to 
+          evaluate the CO2 alarm system is removed.
+	- At file TempControl.c, the temperature maximum and minimum 
+ 	  set point limit to control temprature is removed.
+	  The temperature set point reach flag condition to 
+          evaluate the alarm system is removed.Remove error offest in 
+ 	  PID calculation. Add fail safe condition where if the 
+          actual temperature has raised 5 degree above set points
+          the fail save relay to supply AC voltage will shut down. 
+	  Remove the deviation alarm logic since it is unnecessary.
+Release v1.7 - 2 September 2016
+	- At file TempControl.c the base heater in normal mode operation
+          will be always active only based on PID calculation while previously
+	  it will activate based on PID calculation and PiD calculation 
+          manager. 
+
+Release v1.8 - 20 October 2016
+	- At file CO2_Control.c the PI calcultation for Co2 control
+  	  is using float numbers and remove the offset error.
+	- At file EventScheduler.c the PI  add function to return the
+ 	  ENDIS flag of Int event. 
+Release v1.9  - 31 October 2016
+	- At file Co2_Control.c the CO2 solenoid injection timer 
+          is inhibited by it's main event enable disable status to make
+	  sure the injection is only onced every period and if set more
+	  then the period, it will finish the period time set first.
+	- At file EventRTC.c is adding the RTC_Event to turn on the base 
+	  heater on first 10 minutes each time the door is closed after an
+ 	  opening and each time after reset or a power cycle. This routine
+          is called as RH boost logic routine.
+	- At file EventScheduler.c the event for calculating CO2 PI control
+	  value is set to have 1 second periode while before is 10 second 
+	  periode. Add the event interrupt for RH boost logic.
+	- At file OMB_DigitalInputs.c each time door is closed, it will 
+          triggers an interrupt event to poll the RH boost logic routine.
+	- At file TempControl.c is added the Event_IntRHBoost to monitor
+	  and make sure that the base heater is on 100% for 10 minutes 
+ 	  each time after door open or after a reset or after a power 
+   	  cycle to boost up the logic.
+Release v2.0 - 21 Novemberv2016
+	- At file CO2_ontrol.c remove the inhibition to trigger the CO2
+          solenoid valve
+	- At file EventRTC.c remove the remove the RTC event of 10 minutes 
+	  base heater turn on. Replace and add with RTC event for pump on and 
+  	  RTC event for pump off
+	- At file EventScheduler.c the period for CO2 PI calculation is
+ 	  returned back to 10 seconds. Remove the event poll interrupt for 
+	  RH boost routine
+	- At file OMB_DigitalInput.c replave the Event Pump Chamber on with
+	  triggering the RTCEventPumpChamberON so the pump will on triggered
+   	  by timer during door closed. But during door open the pump will be 
+ 	  turned off by RTC event of pump off and stop the RTC event timer
+  	  to pump on.
+	- At file OMB_Mode.c  in the set to normal operation routine, the 
+	  routine to trigger the RTC event to start pumping On is added. 
+   	  And  in the set to decontamination mode operation routine, the 
+	  logic to turn off the RTC event for pump on or pump off is clear
+	  and disabled to prevent the  pump running in an event of sterilization. 
+	- At file TempControl.c the routine to control the on and off pump 
+	  duty cycle with period of 1 hours is added and introduced. 
+	  User is able to set the duty cycle for the pump operation by using
+	  unused UV_RUn_Timer flag.
+
+
+Release v2.1 25 January 2017
+    - At file eventScheduler.c change OMB_Version to 21 for v2.1
+    - At file OMBDigital_Inputs.c forcing the pump to on first each time after
+      door close and forcing the pump to off each time door closed.
+    - Add supervisory event
+      
+
+	
+

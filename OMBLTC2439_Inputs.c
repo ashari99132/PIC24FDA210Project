@@ -167,6 +167,12 @@ void EventUpdate_PT100channel(void)
   Tcv_total-=ActualTcv;
  }
  Tcv_total+=GetPT100temp(ADCpt100);
+ if(ActualTcv<=0.0)
+ {
+  SensorStatus|=FLAG_PT100_ERROR;
+  SetFlag(OMB_SENSOR_STATUS_FLAG,SensorStatus);
+  Tcv=0.0;
+ }
  ActualTcv=Tcv_total/(float)Moving_Avg_Window;
  Tcv=(WORD)(ActualTcv* 100);
  n_Tcv++; 
