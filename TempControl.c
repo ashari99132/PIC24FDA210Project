@@ -191,7 +191,7 @@ BYTE Ret_T_PIDcalculation(void)
 		else {
 			CObias=0;
 			StartONCEMainEvent(1000,HEATERS_OFF_ID);
-			//StartONCEMainEvent(4000,DOOR_HEATER_OFF_ID);
+			StartONCEMainEvent(3000,DOOR_HEATER_OFF_ID);
 			}
 		
 		if(PrevError<=Error && Error>0.0)T_Itemp+=Error;
@@ -200,14 +200,14 @@ BYTE Ret_T_PIDcalculation(void)
 		if (Error>0.0)DutyCycle=(100.0*((Kc*Error)+(Kc*T_Itemp/Ti)))+CObias;
 		else DutyCycle=0.0;
 
-
-		if( Error > PrevError && Error>0)
+               /*
+		if( Error >= PrevError && Error>0)
  		 {
    			SigmaT_SP=Error;
   			SigmaT=0.0;
                         UpdateDCY=1;
                  }
-                else if(Error<=PrevError && Error>0)
+                else if(Error<PrevError && Error>0)
    		{
      		Delta_Sigma=0.0;
      		if(DutyCycle>100.0)SigmaT+=DT_PER_DCY_100;
@@ -223,59 +223,11 @@ BYTE Ret_T_PIDcalculation(void)
      
    		}
   		else UpdateDCY=0;
+                */
+                if(Error>0)UpdateDCY=1;
+                else UpdateDCY=0;
 
-		
- 
-
-//			switch(HeatAction)
-//			{
-//				case 0:
-//				if(Error>PrevError)
-//				{
-//
-//					TargetError=Error*0.8;
-//					HeatAction=1;
-//					if((Kc*Error)>1.0)
-//						{
-//						 T_Itemp=0.0;
-//						 returnDCY=100.0;						 
-//						}
-//					else 
-//						{
-//							T_Itemp+=Error;
-//							if (Error>0.0)returnDCY=(100.0*((Kc*Error)+(Kc*T_Itemp/Ti)))+CObias;
-//							else returnDCY=0.0;
-//			
-//						}
-//					 
-//				}
-//				else returnDCY=0.0;
-//				break;
-//				case 1:
-//				if(Error>TargetError)
-//					{
-//						if((Kc*Error)>1.0)
-//						{
-//						 T_Itemp=0.0;
-//						 returnDCY=100.0;						 
-//						}
-//						else 
-//						{
-//							T_Itemp+=Error;
-//							if (Error>0.0)returnDCY=(100.0*((Kc*Error)+(Kc*T_Itemp/Ti)))+CObias;
-//							else returnDCY=0.0;			
-//						}
-//						
-//					}	
-//				else {
-//					HeatAction=0;
-//					returnDCY=0.0;
-//				}
-//				break;
-//
-//
-//			}
-		if(T_Itemp>99.99)T_Itemp=99.99;
+                if(T_Itemp>99.99)T_Itemp=99.99;
 		else if(T_Itemp<-99.99)T_Itemp=-99.99;
 		
 		PrevError=Error;
@@ -422,14 +374,14 @@ void RTCEventPumpChamberOn(void)
  float Time=(float)UV_RunTimer*PUMP_DCY_PERIOD/100.0;
  if(Time>0.0)
  {
- SetOutPut(J13_ZONE6_HTR,ON);
+ SetOutPut(J37_LEDDRIVER,ON);
  OutputsFlag|=PUMP_FLAG;
  SetFlag(OMB_OUTPUTS_FLAG,OutputsFlag);
  StartTimerRTC(PUMP_OFF_ID, ONCE, Time*MINUTE);
  }
  else
  {
-     SetOutPut(J13_ZONE6_HTR,OFF);
+     SetOutPut(J37_LEDDRIVER,OFF);
      StartTimerRTC(PUMP_OFF_ID, ONCE, 1*MINUTE);
  }
 }
@@ -440,14 +392,14 @@ void RTCEventPumpChamberOff(void)
  float Time=((100.0-(float)UV_RunTimer)*PUMP_DCY_PERIOD/100.0);
  if(Time<PUMP_DCY_PERIOD && Time>0.0)
  {
- SetOutPut(J13_ZONE6_HTR,OFF);
+ SetOutPut(J37_LEDDRIVER,OFF);
  OutputsFlag&=~PUMP_FLAG;
  SetFlag(OMB_OUTPUTS_FLAG,OutputsFlag);
  StartTimerRTC(PUMP_ON_ID, ONCE, Time*MINUTE);
  }
  else
  {
-  SetOutPut(J13_ZONE6_HTR,ON);
+  SetOutPut(J37_LEDDRIVER,ON);
   StartTimerRTC(PUMP_ON_ID, ONCE, 1*MINUTE);
  }
 }

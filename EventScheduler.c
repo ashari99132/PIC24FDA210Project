@@ -7,7 +7,7 @@ EventScheduler.c
 #include "ApplicationDrivers.h"
 #include "EventScheduler.h"
 
-WORD OMB_Software_Ver=22;     //OMB Software ver 1.0
+WORD OMB_Software_Ver=23;     //OMB Software ver 2.3
 EVENT MainEvent[TOTAL_EVENT]=
 		{
 			{TEMP_PI_ID,EVENT_DIS,PERIODIC,5000,INIT_RUNTIME, EventUpdateTempPIControl},

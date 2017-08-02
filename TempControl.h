@@ -17,7 +17,7 @@
 #define PAN_HEAT_RATIO_DEFAULT	80	
 #define POWER_RATIO_DFLT		100
 
-#define DT_PER_DCY                  0.003
+#define DT_PER_DCY                  0.0003
 #define DT_PER_DCY_100      75.0
 
 //--------compressor control flag----------//
