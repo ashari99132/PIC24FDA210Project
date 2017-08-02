@@ -3,7 +3,7 @@
 
 #define MINUTE		60
 #define HOUR		3600
-#define TOTAL_EVENT_RTC 6
+#define TOTAL_EVENT_RTC 8
 
 enum __RTC_Event_Id_ {
 
@@ -13,6 +13,8 @@ GROWLIGHT_RUNTIME_RTC_ID,
 NORMAL_MODE_ID,
 CTL_ENABLE_ID,
 COLD_CTL_ENABLE_ID,
+PUMP_ON_ID,
+PUMP_OFF_ID,
 };
 void EventRTC (void);
 void EventIntRTC (void);

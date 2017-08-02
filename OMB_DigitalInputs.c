@@ -144,15 +144,18 @@ WORD AlarmStatus=ReturnFlag(OMB_ALARM_STATUS_FLAG);
 					{
                                        // if(ReturnTimerRTCENDIS(COLD_CTL_ENABLE_ID)!=EVENT_EN)
                                         //    {
-                                            EventPumpChamberOn();
+                                            //EventPumpChamberOn();
+                                            RTCEventPumpChamberOn();
                                             StartTimerRTC(CTL_ENABLE_ID,ONCE,1*MINUTE);
                                             SetMainEventENDIS(CO2_PI_ID,EVENT_EN);
                                             Update_Zone2_OC4_PWM(0.0);//fix base
                                          //   }
 					}
 				else{
-					EventPumpChamberOff();
-					Event_Control_Disabled();
+					//EventPumpChamberOff();
+					StopTimerRTC(PUMP_ON_ID);
+                                        StopTimerRTC(PUMP_OFF_ID);
+                                        Event_Control_Disabled();
                                         Update_Zone2_OC4_PWM(10.0);//fix base
                                         Update_Zone4_OC6_PWM(5.0);//fix secondary
                                 }

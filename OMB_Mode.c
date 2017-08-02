@@ -108,7 +108,8 @@ FailSafe_Relay_On();
 //Stop_PID_Heater();
 EventFanDeconOff();
 SetCOBias(0.0);
-EventPumpChamberOn();
+//EventPumpChamberOn();
+RTCEventPumpChamberOn();
 }
 
 void Set_DeconMode (void)
@@ -142,6 +143,8 @@ void Set_DeconMode (void)
         DelayMs(5000);
 	SetOutPut(VAISALA_PWR,OFF);
 	EventPumpChamberOff();
+        StopTimerRTC(PUMP_ON_ID);
+        StopTimerRTC(PUMP_OFF_ID);
 	EventFanDeconOn();
 	SetOutPut(J14_ZONE5_HTR,OFF);
 	SetCOBias(90.0);

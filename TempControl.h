@@ -4,7 +4,7 @@
 #define T_CTL_LIMIT 	300 //3oC
 #define PWM_PERIOD		5000 //5secs
 #define HEATER_PWM_PERIOD 1000 //1SECS
-
+#define PUMP_DCY_PERIOD   60.0 // minutes
 #define Kp				150		//0.2oC/%
 #define MAX_DATA_SAMPLES 60
 //--------default values----------------//
@@ -60,7 +60,8 @@ void Event_Control_Disabled(void);
 void Stop_Door_Heater(void);
 void EventColdStartUp(void);
 
-
+void RTCEventPumpChamberOn(void);
+void RTCEventPumpChamberOff(void);
 
 
 #endif

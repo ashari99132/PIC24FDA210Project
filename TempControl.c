@@ -115,11 +115,8 @@ void Run_PID_Heater(void)
  else
  	{
 	 Pwr_Ratio=Door_Htr_PR/100.0;
-	 
-  	 if(ReturnFlag(OMB_CELSAFE_OPT_FLAG)&O2_OPT)Update_Zone3_OC5_PWM(DutyCycle*Pwr_Ratio+80);
-         else Update_Zone3_OC5_PWM(DutyCycle*Pwr_Ratio);
-         
-         Pwr_Ratio=Base_Htr_PR/100.0;
+	 Update_Zone3_OC5_PWM(DutyCycle*Pwr_Ratio);
+  	 Pwr_Ratio=Base_Htr_PR/100.0;
 	 Update_Zone2_OC4_PWM  ( DutyCycle*Pwr_Ratio);
     }
 
@@ -413,4 +410,38 @@ void EventColdStartUp(void)
  }
  else Event_Control_Enabled();
 
+}
+void RTCEventPumpChamberOn(void)
+{
+ WORD OutputsFlag=ReturnFlag(OMB_OUTPUTS_FLAG);
+ float Time=(float)UV_RunTimer*PUMP_DCY_PERIOD/100.0;
+ if(Time>0.0)
+ {
+ SetOutPut(J13_ZONE6_HTR,ON);
+ OutputsFlag|=PUMP_FLAG;
+ SetFlag(OMB_OUTPUTS_FLAG,OutputsFlag);
+ StartTimerRTC(PUMP_OFF_ID, ONCE, Time*MINUTE);
+ }
+ else
+ {
+     SetOutPut(J13_ZONE6_HTR,OFF);
+     StartTimerRTC(PUMP_OFF_ID, ONCE, 1*MINUTE);
+ }
+}
+void RTCEventPumpChamberOff(void)
+{
+ WORD OutputsFlag=ReturnFlag(OMB_OUTPUTS_FLAG);
+ BYTE c;
+ float Time=((100.0-(float)UV_RunTimer)*PUMP_DCY_PERIOD/100.0);
+ if(Time<PUMP_DCY_PERIOD && Time>0.0)
+ {
+ SetOutPut(J13_ZONE6_HTR,OFF);
+ OutputsFlag&=~PUMP_FLAG;
+ SetFlag(OMB_OUTPUTS_FLAG,OutputsFlag);
+ StartTimerRTC(PUMP_ON_ID, ONCE, Time*MINUTE);
+ }
+ else
+ {
+  StartTimerRTC(PUMP_ON_ID, ONCE, 1*MINUTE);
+ }
 }
