@@ -1,0 +1,263 @@
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/svn/Esco/!svn/ver/5489/O-Series%20(%20Celsafe%20&%20Shaker%20)/Main%20Board/O%20Series_Main_Board/Microchip/Include/USB
+END
+usb.h
+K 25
+svn:wc:ra_dav:version-url
+V 126
+/svn/Esco/!svn/ver/5489/O-Series%20(%20Celsafe%20&%20Shaker%20)/Main%20Board/O%20Series_Main_Board/Microchip/Include/USB/usb.h
+END
+usb_ch9.h
+K 25
+svn:wc:ra_dav:version-url
+V 130
+/svn/Esco/!svn/ver/5489/O-Series%20(%20Celsafe%20&%20Shaker%20)/Main%20Board/O%20Series_Main_Board/Microchip/Include/USB/usb_ch9.h
+END
+usb_function_phdc.h
+K 25
+svn:wc:ra_dav:version-url
+V 140
+/svn/Esco/!svn/ver/5489/O-Series%20(%20Celsafe%20&%20Shaker%20)/Main%20Board/O%20Series_Main_Board/Microchip/Include/USB/usb_function_phdc.h
+END
+usb_common.h
+K 25
+svn:wc:ra_dav:version-url
+V 133
+/svn/Esco/!svn/ver/5489/O-Series%20(%20Celsafe%20&%20Shaker%20)/Main%20Board/O%20Series_Main_Board/Microchip/Include/USB/usb_common.h
+END
+usb_function_msd.h
+K 25
+svn:wc:ra_dav:version-url
+V 139
+/svn/Esco/!svn/ver/5489/O-Series%20(%20Celsafe%20&%20Shaker%20)/Main%20Board/O%20Series_Main_Board/Microchip/Include/USB/usb_function_msd.h
+END
+usb_otg.h
+K 25
+svn:wc:ra_dav:version-url
+V 130
+/svn/Esco/!svn/ver/5489/O-Series%20(%20Celsafe%20&%20Shaker%20)/Main%20Board/O%20Series_Main_Board/Microchip/Include/USB/usb_otg.h
+END
+usb_printer_pos_seiko_mpu_l465.h
+K 25
+svn:wc:ra_dav:version-url
+V 153
+/svn/Esco/!svn/ver/5489/O-Series%20(%20Celsafe%20&%20Shaker%20)/Main%20Board/O%20Series_Main_Board/Microchip/Include/USB/usb_printer_pos_seiko_mpu_l465.h
+END
+usb_host_printer_primitives.h
+K 25
+svn:wc:ra_dav:version-url
+V 150
+/svn/Esco/!svn/ver/5489/O-Series%20(%20Celsafe%20&%20Shaker%20)/Main%20Board/O%20Series_Main_Board/Microchip/Include/USB/usb_host_printer_primitives.h
+END
+usb_hal_pic16f1.h
+K 25
+svn:wc:ra_dav:version-url
+V 138
+/svn/Esco/!svn/ver/5489/O-Series%20(%20Celsafe%20&%20Shaker%20)/Main%20Board/O%20Series_Main_Board/Microchip/Include/USB/usb_hal_pic16f1.h
+END
+usb_function_cdc.h
+K 25
+svn:wc:ra_dav:version-url
+V 139
+/svn/Esco/!svn/ver/5489/O-Series%20(%20Celsafe%20&%20Shaker%20)/Main%20Board/O%20Series_Main_Board/Microchip/Include/USB/usb_function_cdc.h
+END
+usb_host_hid.h
+K 25
+svn:wc:ra_dav:version-url
+V 135
+/svn/Esco/!svn/ver/5489/O-Series%20(%20Celsafe%20&%20Shaker%20)/Main%20Board/O%20Series_Main_Board/Microchip/Include/USB/usb_host_hid.h
+END
+usb_host_audio_v1.h
+K 25
+svn:wc:ra_dav:version-url
+V 140
+/svn/Esco/!svn/ver/5489/O-Series%20(%20Celsafe%20&%20Shaker%20)/Main%20Board/O%20Series_Main_Board/Microchip/Include/USB/usb_host_audio_v1.h
+END
+usb_hal.h
+K 25
+svn:wc:ra_dav:version-url
+V 130
+/svn/Esco/!svn/ver/5489/O-Series%20(%20Celsafe%20&%20Shaker%20)/Main%20Board/O%20Series_Main_Board/Microchip/Include/USB/usb_hal.h
+END
+usb_hal_pic24.h
+K 25
+svn:wc:ra_dav:version-url
+V 136
+/svn/Esco/!svn/ver/5489/O-Series%20(%20Celsafe%20&%20Shaker%20)/Main%20Board/O%20Series_Main_Board/Microchip/Include/USB/usb_hal_pic24.h
+END
+usb_host_cdc_interface.h
+K 25
+svn:wc:ra_dav:version-url
+V 145
+/svn/Esco/!svn/ver/5489/O-Series%20(%20Celsafe%20&%20Shaker%20)/Main%20Board/O%20Series_Main_Board/Microchip/Include/USB/usb_host_cdc_interface.h
+END
+usb_host_printer_postscript.h
+K 25
+svn:wc:ra_dav:version-url
+V 150
+/svn/Esco/!svn/ver/5489/O-Series%20(%20Celsafe%20&%20Shaker%20)/Main%20Board/O%20Series_Main_Board/Microchip/Include/USB/usb_host_printer_postscript.h
+END
+usb_hal_pic24f.h
+K 25
+svn:wc:ra_dav:version-url
+V 137
+/svn/Esco/!svn/ver/5489/O-Series%20(%20Celsafe%20&%20Shaker%20)/Main%20Board/O%20Series_Main_Board/Microchip/Include/USB/usb_hal_pic24f.h
+END
+usb_host_msd.h
+K 25
+svn:wc:ra_dav:version-url
+V 135
+/svn/Esco/!svn/ver/5489/O-Series%20(%20Celsafe%20&%20Shaker%20)/Main%20Board/O%20Series_Main_Board/Microchip/Include/USB/usb_host_msd.h
+END
+usb_host_printer.h
+K 25
+svn:wc:ra_dav:version-url
+V 139
+/svn/Esco/!svn/ver/5489/O-Series%20(%20Celsafe%20&%20Shaker%20)/Main%20Board/O%20Series_Main_Board/Microchip/Include/USB/usb_host_printer.h
+END
+usb_function_generic.h
+K 25
+svn:wc:ra_dav:version-url
+V 143
+/svn/Esco/!svn/ver/5489/O-Series%20(%20Celsafe%20&%20Shaker%20)/Main%20Board/O%20Series_Main_Board/Microchip/Include/USB/usb_function_generic.h
+END
+usb_host_cdc.h
+K 25
+svn:wc:ra_dav:version-url
+V 135
+/svn/Esco/!svn/ver/5489/O-Series%20(%20Celsafe%20&%20Shaker%20)/Main%20Board/O%20Series_Main_Board/Microchip/Include/USB/usb_host_cdc.h
+END
+usb_function_midi.h
+K 25
+svn:wc:ra_dav:version-url
+V 140
+/svn/Esco/!svn/ver/5489/O-Series%20(%20Celsafe%20&%20Shaker%20)/Main%20Board/O%20Series_Main_Board/Microchip/Include/USB/usb_function_midi.h
+END
+usb_printer_pos_seiko_dpu_v445.h
+K 25
+svn:wc:ra_dav:version-url
+V 153
+/svn/Esco/!svn/ver/5489/O-Series%20(%20Celsafe%20&%20Shaker%20)/Main%20Board/O%20Series_Main_Board/Microchip/Include/USB/usb_printer_pos_seiko_dpu_v445.h
+END
+usb_host_printer_esc_pos.h
+K 25
+svn:wc:ra_dav:version-url
+V 147
+/svn/Esco/!svn/ver/5489/O-Series%20(%20Celsafe%20&%20Shaker%20)/Main%20Board/O%20Series_Main_Board/Microchip/Include/USB/usb_host_printer_esc_pos.h
+END
+usb_device.h
+K 25
+svn:wc:ra_dav:version-url
+V 133
+/svn/Esco/!svn/ver/5489/O-Series%20(%20Celsafe%20&%20Shaker%20)/Main%20Board/O%20Series_Main_Board/Microchip/Include/USB/usb_device.h
+END
+usb_function_phdc_com_model.h
+K 25
+svn:wc:ra_dav:version-url
+V 150
+/svn/Esco/!svn/ver/5489/O-Series%20(%20Celsafe%20&%20Shaker%20)/Main%20Board/O%20Series_Main_Board/Microchip/Include/USB/usb_function_phdc_com_model.h
+END
+usb_hal_dspic33E.h
+K 25
+svn:wc:ra_dav:version-url
+V 139
+/svn/Esco/!svn/ver/5489/O-Series%20(%20Celsafe%20&%20Shaker%20)/Main%20Board/O%20Series_Main_Board/Microchip/Include/USB/usb_hal_dspic33E.h
+END
+usb_host_msd_scsi.h
+K 25
+svn:wc:ra_dav:version-url
+V 140
+/svn/Esco/!svn/ver/5489/O-Series%20(%20Celsafe%20&%20Shaker%20)/Main%20Board/O%20Series_Main_Board/Microchip/Include/USB/usb_host_msd_scsi.h
+END
+usb_host_printer_pcl_5.h
+K 25
+svn:wc:ra_dav:version-url
+V 145
+/svn/Esco/!svn/ver/5489/O-Series%20(%20Celsafe%20&%20Shaker%20)/Main%20Board/O%20Series_Main_Board/Microchip/Include/USB/usb_host_printer_pcl_5.h
+END
+usb_hal_pic32.h
+K 25
+svn:wc:ra_dav:version-url
+V 136
+/svn/Esco/!svn/ver/5489/O-Series%20(%20Celsafe%20&%20Shaker%20)/Main%20Board/O%20Series_Main_Board/Microchip/Include/USB/usb_hal_pic32.h
+END
+usb_function_audio.h
+K 25
+svn:wc:ra_dav:version-url
+V 141
+/svn/Esco/!svn/ver/5489/O-Series%20(%20Celsafe%20&%20Shaker%20)/Main%20Board/O%20Series_Main_Board/Microchip/Include/USB/usb_function_audio.h
+END
+usb_function_ccid.h
+K 25
+svn:wc:ra_dav:version-url
+V 140
+/svn/Esco/!svn/ver/5489/O-Series%20(%20Celsafe%20&%20Shaker%20)/Main%20Board/O%20Series_Main_Board/Microchip/Include/USB/usb_function_ccid.h
+END
+usb_host_charger.h
+K 25
+svn:wc:ra_dav:version-url
+V 139
+/svn/Esco/!svn/ver/5489/O-Series%20(%20Celsafe%20&%20Shaker%20)/Main%20Board/O%20Series_Main_Board/Microchip/Include/USB/usb_host_charger.h
+END
+usb_hal_pic18.h
+K 25
+svn:wc:ra_dav:version-url
+V 136
+/svn/Esco/!svn/ver/5489/O-Series%20(%20Celsafe%20&%20Shaker%20)/Main%20Board/O%20Series_Main_Board/Microchip/Include/USB/usb_hal_pic18.h
+END
+usb_host_generic.h
+K 25
+svn:wc:ra_dav:version-url
+V 139
+/svn/Esco/!svn/ver/5489/O-Series%20(%20Celsafe%20&%20Shaker%20)/Main%20Board/O%20Series_Main_Board/Microchip/Include/USB/usb_host_generic.h
+END
+usb_function_hid.h
+K 25
+svn:wc:ra_dav:version-url
+V 139
+/svn/Esco/!svn/ver/5489/O-Series%20(%20Celsafe%20&%20Shaker%20)/Main%20Board/O%20Series_Main_Board/Microchip/Include/USB/usb_function_hid.h
+END
+usb_hal_pic24E.h
+K 25
+svn:wc:ra_dav:version-url
+V 137
+/svn/Esco/!svn/ver/5489/O-Series%20(%20Celsafe%20&%20Shaker%20)/Main%20Board/O%20Series_Main_Board/Microchip/Include/USB/usb_hal_pic24E.h
+END
+usb_printer_pos_bixolon_srp_270.h
+K 25
+svn:wc:ra_dav:version-url
+V 154
+/svn/Esco/!svn/ver/5489/O-Series%20(%20Celsafe%20&%20Shaker%20)/Main%20Board/O%20Series_Main_Board/Microchip/Include/USB/usb_printer_pos_bixolon_srp_270.h
+END
+usb_printer_pos_epson_tm_t88iv.h
+K 25
+svn:wc:ra_dav:version-url
+V 153
+/svn/Esco/!svn/ver/5489/O-Series%20(%20Celsafe%20&%20Shaker%20)/Main%20Board/O%20Series_Main_Board/Microchip/Include/USB/usb_printer_pos_epson_tm_t88iv.h
+END
+usb_host_hid_parser.h
+K 25
+svn:wc:ra_dav:version-url
+V 142
+/svn/Esco/!svn/ver/5489/O-Series%20(%20Celsafe%20&%20Shaker%20)/Main%20Board/O%20Series_Main_Board/Microchip/Include/USB/usb_host_hid_parser.h
+END
+usb_host_android.h
+K 25
+svn:wc:ra_dav:version-url
+V 139
+/svn/Esco/!svn/ver/5489/O-Series%20(%20Celsafe%20&%20Shaker%20)/Main%20Board/O%20Series_Main_Board/Microchip/Include/USB/usb_host_android.h
+END
+usb_host.h
+K 25
+svn:wc:ra_dav:version-url
+V 131
+/svn/Esco/!svn/ver/5489/O-Series%20(%20Celsafe%20&%20Shaker%20)/Main%20Board/O%20Series_Main_Board/Microchip/Include/USB/usb_host.h
+END
+usb_host_midi.h
+K 25
+svn:wc:ra_dav:version-url
+V 136
+/svn/Esco/!svn/ver/5489/O-Series%20(%20Celsafe%20&%20Shaker%20)/Main%20Board/O%20Series_Main_Board/Microchip/Include/USB/usb_host_midi.h
+END

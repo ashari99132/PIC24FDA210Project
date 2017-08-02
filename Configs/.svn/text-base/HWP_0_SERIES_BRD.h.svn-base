@@ -1,0 +1,158 @@
+ /*********************************************************************
+ *
+ *	Hardware specific definitions for:
+ *    - PIC24FJ256DA210 Development Board
+ *    - PIC24FJ256DA210
+ *    - Ethernet PICtail Plus (ENC28J60)
+ *
+ *********************************************************************
+ * FileName:        HardwareProfile.h
+ * Dependencies:    Compiler.h
+ * Processor:       PIC24F, PIC24H, dsPIC30F, dsPIC33F
+ * Compiler:        Microchip C30 v3.24 or higher
+ * Company:         Microchip Technology, Inc.
+ *
+ * Software License Agreement
+ *
+ * Copyright (C) 2002-2010 Microchip Technology Inc.  All rights
+ * reserved.
+ *
+ * Microchip licenses to you the right to use, modify, copy, and
+ * distribute:
+ * (i)  the Software when embedded on a Microchip microcontroller or
+ *      digital signal controller product ("Device") which is
+ *      integrated into Licensee's product; or
+ * (ii) ONLY the Software driver source files ENC28J60.c, ENC28J60.h,
+ *		ENCX24J600.c and ENCX24J600.h ported to a non-Microchip device
+ *		used in conjunction with a Microchip ethernet controller for
+ *		the sole purpose of interfacing with the ethernet controller.
+ *
+ * You should refer to the license agreement accompanying this
+ * Software for additional information regarding your rights and
+ * obligations.
+ *
+ * THE SOFTWARE AND DOCUMENTATION ARE PROVIDED "AS IS" WITHOUT
+ * WARRANTY OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT
+ * LIMITATION, ANY WARRANTY OF MERCHANTABILITY, FITNESS FOR A
+ * PARTICULAR PURPOSE, TITLE AND NON-INFRINGEMENT. IN NO EVENT SHALL
+ * MICROCHIP BE LIABLE FOR ANY INCIDENTAL, SPECIAL, INDIRECT OR
+ * CONSEQUENTIAL DAMAGES, LOST PROFITS OR LOST DATA, COST OF
+ * PROCUREMENT OF SUBSTITUTE GOODS, TECHNOLOGY OR SERVICES, ANY CLAIMS
+ * BY THIRD PARTIES (INCLUDING BUT NOT LIMITED TO ANY DEFENSE
+ * THEREOF), ANY CLAIMS FOR INDEMNITY OR CONTRIBUTION, OR OTHER
+ * SIMILAR COSTS, WHETHER ASSERTED ON THE BASIS OF CONTRACT, TORT
+ * (INCLUDING NEGLIGENCE), BREACH OF WARRANTY, OR OTHERWISE.
+ *
+ *
+ * Author               Date		Comment
+ *~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ * Howard Schlunder		09/16/2010	Regenerated for specific boards
+ ********************************************************************/
+#ifndef HARDWARE_PROFILE_H
+#define HARDWARE_PROFILE_H
+
+#include "Compiler.h"
+
+// Define a macro describing this hardware set up (used in other files)
+#define PIC24FJ256DA210_DEV_BOARD
+
+// Set configuration fuses (but only in MainDemo.c where THIS_IS_STACK_APPLICATION is defined)
+#if defined(THIS_IS_STACK_APPLICATION)
+	_CONFIG3(ALTPMP_ALTPMPEN & SOSCSEL_EC); 										// PMP in alternative location, disable Timer1 oscillator so that RC13 can be used as a GPIO
+	_CONFIG2(FNOSC_PRIPLL & POSCMOD_XT & IOL1WAY_OFF & PLL96MHZ_ON & PLLDIV_DIV2);	// Primary XT OSC with 96MHz PLL (8MHz crystal input), IOLOCK can be set and cleared
+	_CONFIG1(FWDTEN_OFF & ICS_PGx2 & JTAGEN_OFF & ALTVREF_ALTVREDIS);				// Watchdog timer off, ICD debugging on PGEC2/PGED2 pins, JTAG off, AVREF and CVREF in default locations
+	
+	//_CONFIG1(FWDTEN_OFF & ICS_PGx2 & GWRP_OFF & GCP_OFF & JTAGEN_OFF)
+    // _CONFIG2(POSCMOD_HS & IOL1WAY_ON & OSCIOFNC_ON & FCKSM_CSDCMD & FNOSC_PRIPLL & PLL96MHZ_ON & PLLDIV_DIV2 & IESO_OFF)
+#endif
+
+
+// Clock frequency values
+// These directly influence timed events using the Tick module.  They also are used for UART and SPI baud rate generation.
+#define GetSystemClock()		(32000000ul)			// Hz
+#define GetInstructionClock()	(GetSystemClock()/2)	// Normally GetSystemClock()/4 for PIC18, GetSystemClock()/2 for PIC24/dsPIC, and GetSystemClock()/1 for PIC32.  Might need changing if using Doze modes.
+#define GetPeripheralClock()	(GetSystemClock()/2)	// Normally GetSystemClock()/4 for PIC18, GetSystemClock()/2 for PIC24/dsPIC, and GetSystemClock()/1 for PIC32.  Divisor may be different if using a PIC32 since it's configurable.
+
+
+// Hardware I/O pin mappings
+
+// Momentary push buttons
+#define BUTTON0_TRIS		(((unsigned char*)&NVMKEY)[1])	// Ref S3: NOTE: This pin is multiplexed with D3 and cannot be used simulatneously.  Therefore, we will pretend there is no such button.
+#define	BUTTON0_IO			(1)
+#define BUTTON1_TRIS		(((unsigned char*)&NVMKEY)[1])	// Ref S2: NOTE: This pin is multiplexed with D2 and cannot be used simulatneously.  Therefore, we will pretend there is no such button.
+#define	BUTTON1_IO			(1)
+#define BUTTON2_TRIS		(((unsigned char*)&NVMKEY)[1])	// Ref S1: NOTE: This pin is multiplexed with D1 and cannot be used simulatneously.  Therefore, we will pretend there is no such button.
+#define	BUTTON2_IO			(1)
+#define BUTTON3_TRIS		(((unsigned char*)&NVMKEY)[1])	// No such button
+#define	BUTTON3_IO			(1)
+
+#define UARTTX_TRIS			(TRISFbits.TRISF3)
+#define UARTTX_IO			(PORTFbits.RF3)
+#define UARTRX_TRIS			(TRISDbits.TRISD0)
+#define UARTRX_IO			(PORTDbits.RD0)
+
+// SST SST25VF016B (16Mbit/2Mbyte) I/O pins
+// Jumper JP23 must have a shunt shorting pins 2-3 (not the default).
+#define SPIFLASH_CS_TRIS		BRDFLASH_CS_TRIS     // (TRISAbits.TRISA14)  // (TRISGbits.TRISG1) --O series board 
+#define SPIFLASH_CS_IO			BRDFLASH_CS_IO       // (LATAbits.LATA14)    // (LATGbits.LATG1) --O series board 
+#define SPIFLASH_SCK_TRIS		(TRISFbits.TRISF3)   // (TRISDbits.TRISD8)   // (TRISFbits.TRISF3) --O series board  
+#define SPIFLASH_SDI_TRIS		(TRISFbits.TRISF2)   // (TRISBbits.TRISB0)   // (TRISFbits.TRISF2) --O series board  
+#define SPIFLASH_SDI_IO			(PORTFbits.RFF2)	 // (PORTBbits.RB0)      // (PORTFbits.RF2) --O series board 
+#define SPIFLASH_SDO_TRIS		(TRISFbits.TRISF2)	 // (TRISBbits.TRISB1)   // (TRISGbits.TRISG8) --O series board  
+#define SPIFLASH_SPI_IF			(IFS0bits.SPI1IF)
+#define SPIFLASH_SSPBUF			(SPI1BUF)
+#define SPIFLASH_SPICON1		(SPI1CON1)
+#define SPIFLASH_SPICON1bits	(SPI1CON1bits)
+#define SPIFLASH_SPICON2		(SPI1CON2)
+#define SPIFLASH_SPISTAT		(SPI1STAT)
+#define SPIFLASH_SPISTATbits	(SPI1STATbits)
+
+
+#define SPIADC_CS_TRIS			(TRISGbits.TRISG0) //--O series board 
+#define SPIADC_CS_IO			(LATGbits.LATG0) //--O series board 
+
+#define SPIDAC_CS_TRIS			(TRISAbits.TRISA1)// --O series board 
+#define SPIDAC_CS_IO			(LATAbits.LATA1) //--O series board 
+
+#define BRDFLASH_CS_TRIS		(TRISGbits.TRISG1) //--O series board 
+#define BRDFLASH_CS_IO			(LATGbits.LATG1) //--O series board 
+
+
+// ENC28J60 I/O pins
+#define ENC_CS_TRIS			(TRISDbits.TRISD15) // (TRISGbits.TRISG6) // (TRISDbits.TRISD15) --O series board
+#define ENC_CS_IO			(LATDbits.LATD15)   // (LATGbits.LATG6)   // (LATDbits.LATD15) --O series board
+//#define ENC_RST_TRIS		(TRISCbits.TRISC3)	// Not connected by default.  It is okay to leave this pin completely unconnected, in which case this macro should simply be left undefined.
+//#define ENC_RST_IO			(LATCbits.LATC3)
+// SPI SCK, SDI, SDO pins are automatically controlled by the 
+// PIC24 SPI module, but Peripheral Pin Select must be configured correctly.
+// MISO = RB0 (RP0); MOSI = RB1 (RP1); SCK = RD8 (RP2)
+#define ENC_SPI_IF			(IFS2bits.SPI2IF)
+#define ENC_SSPBUF			(SPI2BUF)
+#define ENC_SPISTAT			(SPI2STAT)
+#define ENC_SPISTATbits		(SPI2STATbits)
+#define ENC_SPICON1			(SPI2CON1)
+#define ENC_SPICON1bits		(SPI2CON1bits)
+#define ENC_SPICON2			(SPI2CON2)
+
+// Select which UART the STACK_USE_UART and STACK_USE_UART2TCP_BRIDGE 
+// options will use.  You can change these to U1BRG, U1MODE, etc. if you 
+// want to use the UART1 module instead of UART2.
+#define UBRG				U2BRG
+#define UMODE				U2MODE
+#define USTA				U2STA
+#define BusyUART()			BusyUART2()
+#define CloseUART()			CloseUART2()
+#define ConfigIntUART(a)	ConfigIntUART2(a)
+#define DataRdyUART()		DataRdyUART2()
+#define OpenUART(a,b,c)		OpenUART2(a,b,c)
+#define ReadUART()			ReadUART2()
+#define WriteUART(a)		WriteUART2(a)
+#define getsUART(a,b,c)		getsUART2(a,b,c)
+#define putsUART(a)			putsUART2((unsigned int*)a)
+#define getcUART()			getcUART2()
+#define putcUART(a)			do{while(BusyUART()); WriteUART(a); while(BusyUART()); }while(0)
+#define putrsUART(a)		putrsUART2(a)
+//#define putrsUART(a)		UART1_Tx_String(a)
+
+
+#endif // #ifndef HARDWARE_PROFILE_H

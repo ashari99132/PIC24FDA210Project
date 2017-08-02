@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 128
+/svn/Esco/!svn/ver/5489/O-Series%20(%20Celsafe%20&%20Shaker%20)/Main%20Board/O%20Series_Main_Board/Microchip/MDD%20File%20System
+END
+SD-SPI.c
+K 25
+svn:wc:ra_dav:version-url
+V 137
+/svn/Esco/!svn/ver/5489/O-Series%20(%20Celsafe%20&%20Shaker%20)/Main%20Board/O%20Series_Main_Board/Microchip/MDD%20File%20System/SD-SPI.c
+END
+FSIO.c
+K 25
+svn:wc:ra_dav:version-url
+V 135
+/svn/Esco/!svn/ver/5489/O-Series%20(%20Celsafe%20&%20Shaker%20)/Main%20Board/O%20Series_Main_Board/Microchip/MDD%20File%20System/FSIO.c
+END
+CF-PMP.c
+K 25
+svn:wc:ra_dav:version-url
+V 137
+/svn/Esco/!svn/ver/5489/O-Series%20(%20Celsafe%20&%20Shaker%20)/Main%20Board/O%20Series_Main_Board/Microchip/MDD%20File%20System/CF-PMP.c
+END
+FS Phys Interface Template.c
+K 25
+svn:wc:ra_dav:version-url
+V 163
+/svn/Esco/!svn/ver/5489/O-Series%20(%20Celsafe%20&%20Shaker%20)/Main%20Board/O%20Series_Main_Board/Microchip/MDD%20File%20System/FS%20Phys%20Interface%20Template.c
+END
+CF-Bit transaction.c
+K 25
+svn:wc:ra_dav:version-url
+V 151
+/svn/Esco/!svn/ver/5489/O-Series%20(%20Celsafe%20&%20Shaker%20)/Main%20Board/O%20Series_Main_Board/Microchip/MDD%20File%20System/CF-Bit%20transaction.c
+END
+Internal Flash.c
+K 25
+svn:wc:ra_dav:version-url
+V 147
+/svn/Esco/!svn/ver/5489/O-Series%20(%20Celsafe%20&%20Shaker%20)/Main%20Board/O%20Series_Main_Board/Microchip/MDD%20File%20System/Internal%20Flash.c
+END

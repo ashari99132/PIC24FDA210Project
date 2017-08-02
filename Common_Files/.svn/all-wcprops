@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 132
+/svn/Esco/!svn/ver/5489/O-Series%20(%20Celsafe%20&%20Shaker%20)/Main%20Board/O%20Series_Main_Board/BLDC/PIC24FJ256DA210/Common_Files
+END
+UARTConfig.c
+K 25
+svn:wc:ra_dav:version-url
+V 145
+/svn/Esco/!svn/ver/5489/O-Series%20(%20Celsafe%20&%20Shaker%20)/Main%20Board/O%20Series_Main_Board/BLDC/PIC24FJ256DA210/Common_Files/UARTConfig.c
+END
+FSConfig.h
+K 25
+svn:wc:ra_dav:version-url
+V 143
+/svn/Esco/!svn/ver/5489/O-Series%20(%20Celsafe%20&%20Shaker%20)/Main%20Board/O%20Series_Main_Board/BLDC/PIC24FJ256DA210/Common_Files/FSConfig.h
+END
+HardwareProfile.h
+K 25
+svn:wc:ra_dav:version-url
+V 150
+/svn/Esco/!svn/ver/5489/O-Series%20(%20Celsafe%20&%20Shaker%20)/Main%20Board/O%20Series_Main_Board/BLDC/PIC24FJ256DA210/Common_Files/HardwareProfile.h
+END
+TCPIPConfig.h
+K 25
+svn:wc:ra_dav:version-url
+V 146
+/svn/Esco/!svn/ver/5489/O-Series%20(%20Celsafe%20&%20Shaker%20)/Main%20Board/O%20Series_Main_Board/BLDC/PIC24FJ256DA210/Common_Files/TCPIPConfig.h
+END
+mib.h
+K 25
+svn:wc:ra_dav:version-url
+V 138
+/svn/Esco/!svn/ver/5489/O-Series%20(%20Celsafe%20&%20Shaker%20)/Main%20Board/O%20Series_Main_Board/BLDC/PIC24FJ256DA210/Common_Files/mib.h
+END
