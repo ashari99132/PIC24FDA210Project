@@ -99,8 +99,13 @@ void Run_PID_Heater(void)
  		{
   			//Pwr_Ratio=Base_Htr_PR/100.0;
 		 	//Update_Zone2_OC4_PWM  ( DutyCycle*Pwr_Ratio);
-			Pwr_Ratio=Decon_Htr_PR/100.0;
-			Update_Zone4_OC6_PWM(DutyCycle*Pwr_Ratio);
+			 Pwr_Ratio=Decon_Htr_PR/100.0;
+			 Update_Zone4_OC6_PWM(DutyCycle*Pwr_Ratio);
+                         Pwr_Ratio=Door_Htr_PR/100.0;
+                         Update_Zone3_OC5_PWM(DutyCycle*Pwr_Ratio);
+                         Pwr_Ratio=Base_Htr_PR/100.0;
+                         Update_Zone2_OC4_PWM  ( DutyCycle*Pwr_Ratio);
+
                         //for door heater only
                 	//Pwr_Ratio=Door_Htr_PR/100.0;
                         //Update_Zone3_OC5_PWM(DutyCycle*Pwr_Ratio);
@@ -112,13 +117,13 @@ void Run_PID_Heater(void)
   //for door  and  base heater heater only
  if (Mode==DECON_MODE) Update_Zone3_OC5_PWM(DutyCycle);
 
- else
- 	{
-	 Pwr_Ratio=Door_Htr_PR/100.0;
-	 Update_Zone3_OC5_PWM(DutyCycle*Pwr_Ratio);
-  	 Pwr_Ratio=Base_Htr_PR/100.0;
-	 Update_Zone2_OC4_PWM  ( DutyCycle*Pwr_Ratio);
-    }
+// else
+// 	{
+//	 Pwr_Ratio=Door_Htr_PR/100.0;
+//	 Update_Zone3_OC5_PWM(DutyCycle*Pwr_Ratio);
+//  	 Pwr_Ratio=Base_Htr_PR/100.0;
+//	 Update_Zone2_OC4_PWM  ( DutyCycle*Pwr_Ratio);
+  //  }
 
  SetFlag(OMB_OUTPUTS_FLAG,OutputsFlag); 
 }
@@ -346,7 +351,7 @@ void EventPumpChamberOn(void)
 {
  WORD OutputsFlag=ReturnFlag(OMB_OUTPUTS_FLAG);
  BYTE c;
- SetOutPut(J13_ZONE6_HTR,ON);
+ SetOutPut(J37_LEDDRIVER,ON);
  for(c=0;c<100;c++)Delay_uS(50000);
  OutputsFlag|=PUMP_FLAG;
  SetFlag(OMB_OUTPUTS_FLAG,OutputsFlag);
@@ -355,7 +360,7 @@ void EventPumpChamberOff(void)
 {
  WORD OutputsFlag=ReturnFlag(OMB_OUTPUTS_FLAG);
  BYTE c;
- SetOutPut(J13_ZONE6_HTR,OFF);
+ SetOutPut(J37_LEDDRIVER,OFF);
  for(c=0;c<100;c++)Delay_uS(50000);
  OutputsFlag&=~PUMP_FLAG;
  SetFlag(OMB_OUTPUTS_FLAG,OutputsFlag);
@@ -417,14 +422,14 @@ void RTCEventPumpChamberOn(void)
  float Time=(float)UV_RunTimer*PUMP_DCY_PERIOD/100.0;
  if(Time>0.0)
  {
- SetOutPut(J37_LEDDRIVER,ON);
+ SetOutPut(J13_ZONE6_HTR,ON);
  OutputsFlag|=PUMP_FLAG;
  SetFlag(OMB_OUTPUTS_FLAG,OutputsFlag);
  StartTimerRTC(PUMP_OFF_ID, ONCE, Time*MINUTE);
  }
  else
  {
-     SetOutPut(J37_LEDDRIVER,OFF);
+     SetOutPut(J13_ZONE6_HTR,OFF);
      StartTimerRTC(PUMP_OFF_ID, ONCE, 1*MINUTE);
  }
 }
@@ -435,14 +440,14 @@ void RTCEventPumpChamberOff(void)
  float Time=((100.0-(float)UV_RunTimer)*PUMP_DCY_PERIOD/100.0);
  if(Time<PUMP_DCY_PERIOD && Time>0.0)
  {
- SetOutPut(J37_LEDDRIVER,OFF);
+ SetOutPut(J13_ZONE6_HTR,OFF);
  OutputsFlag&=~PUMP_FLAG;
  SetFlag(OMB_OUTPUTS_FLAG,OutputsFlag);
  StartTimerRTC(PUMP_ON_ID, ONCE, Time*MINUTE);
  }
  else
  {
-  SetOutPut(J37_LEDDRIVER,ON);
+  SetOutPut(J13_ZONE6_HTR,ON);
   StartTimerRTC(PUMP_ON_ID, ONCE, 1*MINUTE);
  }
 }

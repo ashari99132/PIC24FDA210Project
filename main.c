@@ -95,6 +95,7 @@ int main(void)
 	Flag[SYSTEM_MODE_FLAG]=NORMAL_MODE;
 	UpdateSystemSensor();
 	EventUpdateAlarmContactRelay();
+        RTCEventPumpChamberOn();
  //       StartTimerRTC(COLD_CTL_ENABLE_ID,ONCE,2*MINUTE);
 //    Exp_FailSafe_Relay_On();
 //	FailSafe_Relay_On();

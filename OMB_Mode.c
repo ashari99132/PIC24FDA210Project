@@ -109,7 +109,7 @@ FailSafe_Relay_On();
 EventFanDeconOff();
 SetCOBias(0.0);
 //EventPumpChamberOn();
-RTCEventPumpChamberOn();
+//RTCEventPumpChamberOn();
 }
 
 void Set_DeconMode (void)

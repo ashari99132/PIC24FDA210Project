@@ -110,7 +110,12 @@ Release v2.1 25 January 2017
     - At file OMBDigital_Inputs.c forcing the pump to on first each time after
       door close and forcing the pump to off each time door closed.
     - Add supervisory event
-      
+
+Release v2.2
+     - at main.c init the rtc event for pump on
+     - at mode.c in setnormalmode function , commented out the init for event rtc pump on
+     - at tempcontrol.c change the pump connection to mainboard uv relay
+     - control temperature of door and base is following th      
 
 	
 
