@@ -1,0 +1,8 @@
+v2.0 
+- remove UV_RUNTIME_RTC event from RTC event
+- Add Pump on pump off RTC event. To make 
+  pump on and off variably in one hour period.
+v1.9
+ - intended only for CLS-T-RH model
+v1.8
+ - First commit from stable release
