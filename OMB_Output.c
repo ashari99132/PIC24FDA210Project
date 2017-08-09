@@ -87,7 +87,7 @@ void TurnOffAllOutputs (void)
 {
 SetFlag(OMB_OUTPUTS_FLAG,0);
 SetOutPut(J7_ALARM_RELAY,OFF);
-SetOutPut(J57_WATER_VALVE,OFF);
+//SetOutPut(J57_WATER_VALVE,OFF);
 SetOutPut(J53_DECON_FAN,OFF);
 SetOutPut(J22_MAIN_SOL_CO2,OFF);
 SetOutPut(J20_COMPRESSOR,OFF);

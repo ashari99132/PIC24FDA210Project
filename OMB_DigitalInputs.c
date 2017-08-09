@@ -4,7 +4,7 @@ OMB_DigitalInputs.c
 #include "ApplicationDrivers.h"
 #include "OMB_DigitalInputs.h"
 #include "HardwareProfile.h"
-
+int TriacDebounceCounter=-1;
 BYTE ReturnRefrigerant_PSW(void)
 {
 	return PORTEbits.RE8;
@@ -49,7 +49,10 @@ BYTE ReturnWaterLevelSensor (void)
 {
 	return PORTAbits.RA4;
 }
-
+BYTE ReturnSpareIO5Port(void)
+{
+       return PORTEbits.RE2;
+}
 void EventUpdateDigitalSensors (void)
 {
 
@@ -126,6 +129,22 @@ else if (!ReturnWaterLevelSensor() && (SwitchStatus&WATER_LEVEL_SW_CLOSE) )
   SwitchStatus&=~WATER_LEVEL_SW_CLOSE;	
   SetIntDrivenEventFlag(SET,INT_WATERLEVEL);
  }
+
+//---Triac Fail Status
+if(ReturnSpareIO5Port())
+{
+    SwitchStatus|=SPARE_IO_5_TRIAC_STAT;
+    TriacDebounceCounter=-1;
+}
+else if (!ReturnSpareIO5Port() && (SwitchStatus&SPARE_IO_5_TRIAC_STAT)
+        && EXPANSION_RELAY_PORT && TriacDebounceCounter<0)
+{
+    TriacDebounceCounter=TRIAC_FAIL_DEBOUNCE_TIME;
+}
+
+if(TriacDebounceCounter==0)SwitchStatus&=~SPARE_IO_5_TRIAC_STAT;
+if(!EXPANSION_RELAY_PORT)SwitchStatus|=SPARE_IO_5_TRIAC_STAT;
+
 
 SetFlag(OMB_SWITCHES_STATUS_FLAG,SwitchStatus);
 
@@ -205,4 +224,24 @@ void EventWaterLevel (void)
 	SetIntDrivenEventFlag(CLEAR,INT_WATERLEVEL); 
 }
 
+void EventTriacFailDetection(void)
+{
+WORD SwitchStatus= ReturnFlag(OMB_SWITCHES_STATUS_FLAG);
+//----Triac Expansion Board Status
 
+if(ReturnSpareIO5Port() && !(SwitchStatus&SPARE_IO_5_TRIAC_STAT) && EXPANSION_RELAY_PORT)
+{
+    SwitchStatus|=SPARE_IO_5_TRIAC_STAT;
+}
+else if (!ReturnSpareIO5Port() && (SwitchStatus&SPARE_IO_5_TRIAC_STAT)&& EXPANSION_RELAY_PORT)
+{
+    SwitchStatus&=~SPARE_IO_5_TRIAC_STAT;
+}
+
+if(!EXPANSION_RELAY_PORT)SwitchStatus|=SPARE_IO_5_TRIAC_STAT;
+SetFlag(OMB_SWITCHES_STATUS_FLAG,SwitchStatus);
+}
+void TriacDebounceCntDown(void)
+{
+    if(TriacDebounceCounter>0)TriacDebounceCounter--;
+}

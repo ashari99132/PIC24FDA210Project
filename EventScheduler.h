@@ -66,6 +66,7 @@ typedef struct __eventInterruptStruct__
 #define DOOR_HEATER_OFF_ID		26
 #define PAN_HEATER_OFF_ID		27
 #define SOL_RH_CONTROL_OFF_ID	28
+#define TRIAC_FAIL_DETECTION_ID	29
 
 
 

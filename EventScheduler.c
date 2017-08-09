@@ -7,7 +7,7 @@ EventScheduler.c
 #include "ApplicationDrivers.h"
 #include "EventScheduler.h"
 
-WORD OMB_Software_Ver=23;     //OMB Software ver 2.3
+WORD OMB_Software_Ver=24;     //OMB Software ver 2.3
 EVENT MainEvent[TOTAL_EVENT]=
 		{
 			{TEMP_PI_ID,EVENT_DIS,PERIODIC,5000,INIT_RUNTIME, EventUpdateTempPIControl},
@@ -31,7 +31,7 @@ EVENT MainEvent[TOTAL_EVENT]=
                         {BACK_CO2SOL_ID,EVENT_DIS,ONCE,0,INIT_RUNTIME, Event_CO2_BackSol_Off},
 			{MAIN_O2SOL_ID,EVENT_DIS,ONCE,0,INIT_RUNTIME, Event_O2_MainSol_Off},
 			{BACK_O2SOL_ID,EVENT_DIS,ONCE,0,INIT_RUNTIME, Event_O2_BackSol_Off},
-			
+                        {TRIAC_FAIL_DETECTION_ID,EVENT_DIS,ONCE,0,INIT_RUNTIME, EventTriacFailDetection},
 			
 			
 		};

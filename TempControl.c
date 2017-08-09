@@ -38,34 +38,7 @@ void EventUpdateTempPIControl (void)
  WORD DoorClose=ReturnFlag(OMB_SWITCHES_STATUS_FLAG)&DOOR_SW_CLOSE;
  WORD PT100_error=ReturnFlag(OMB_SENSOR_STATUS_FLAG)&FLAG_PT100_ERROR;
  WORD ThermostatClose=ReturnFlag(OMB_SWITCHES_STATUS_FLAG)&THERSMOSTAT_SW_CLOSE;
- /*WORD AlarmStatus=ReturnFlag(OMB_ALARM_STATUS_FLAG);
- 
- WORDTOBYTE tempWord;
- WORD *pWord;
- //reset the intergral error if new set point coming in 
-
-   if(prevTsp!=Tsp)
-	 {
-
-					pWord=&Tsp_ha;
-                                        *pWord+=Tsp-prevTsp;
-					tempWord.word=*pWord;
-					EEPROM_MultiWrite (CLSRegister[TSP_HA].EEPROM_Address, &tempWord.bytes[0],2);
-					Delay_uS(5000);
-                                        pWord=&Tsp_la;
-                                        *pWord+=Tsp-prevTsp;
-					tempWord.word=*pWord;
-					EEPROM_MultiWrite (CLSRegister[TSP_LA].EEPROM_Address, &tempWord.bytes[0],2);
-					Delay_uS(5000);
-
-   AlarmStatus&=~TSP_REACH;
-   SetFlag(OMB_ALARM_STATUS_FLAG,AlarmStatus);
-   prevTsp=Tsp;
-   T_Itemp=0;
- }
-*/
- 
-   
+  
  //monitor alarm for temp control
    if(!PT100_error && ThermostatClose )TempAlarm_Update();
    else ClearTempALarm();
@@ -89,16 +62,13 @@ void Run_PID_Heater(void)
  		if(DutyCycle>0.0)OutputsFlag|=MAIN_HEATER_FLAG;
 		if (Mode==DECON_MODE)
  		{
- 			Update_Zone2_OC4_PWM(0.5*DutyCycle);
-			Update_Zone4_OC6_PWM(0.5*DutyCycle);
-                        //for door heater only
-                        //Update_Zone3_OC5_PWM(DutyCycle);
-                        if((0.6*DutyCycle)>0.0)OutputsFlag|=BASE_HEATER_FLAG;
+ 		 	 Update_Zone2_OC4_PWM(0.8*DutyCycle);
+			 Update_Zone4_OC6_PWM(DutyCycle);
+                         Update_Zone2_OC4_PWM( DutyCycle);
+                         Update_Zone3_OC5_PWM(DutyCycle);
 		}
 		else 
  		{
-  			//Pwr_Ratio=Base_Htr_PR/100.0;
-		 	//Update_Zone2_OC4_PWM  ( DutyCycle*Pwr_Ratio);
 			 Pwr_Ratio=Decon_Htr_PR/100.0;
 			 Update_Zone4_OC6_PWM(DutyCycle*Pwr_Ratio);
                          Pwr_Ratio=Door_Htr_PR/100.0;
@@ -106,24 +76,8 @@ void Run_PID_Heater(void)
                          Pwr_Ratio=Base_Htr_PR/100.0;
                          Update_Zone2_OC4_PWM  ( DutyCycle*Pwr_Ratio);
 
-                        //for door heater only
-                	//Pwr_Ratio=Door_Htr_PR/100.0;
-                        //Update_Zone3_OC5_PWM(DutyCycle*Pwr_Ratio);
-                        //if((DutyCycle*Pwr_Ratio)>0.0)OutputsFlag|=BASE_HEATER_FLAG;
-
  		}
  	}
-
-  //for door  and  base heater heater only
- if (Mode==DECON_MODE) Update_Zone3_OC5_PWM(DutyCycle);
-
-// else
-// 	{
-//	 Pwr_Ratio=Door_Htr_PR/100.0;
-//	 Update_Zone3_OC5_PWM(DutyCycle*Pwr_Ratio);
-//  	 Pwr_Ratio=Base_Htr_PR/100.0;
-//	 Update_Zone2_OC4_PWM  ( DutyCycle*Pwr_Ratio);
-  //  }
 
  SetFlag(OMB_OUTPUTS_FLAG,OutputsFlag); 
 }
@@ -164,25 +118,14 @@ BYTE Ret_T_PIDcalculation(void)
 		float returnDCY;
 		float Kc= T_pnum/((float)T_pdnum);//1.3274;//0.9190; //0.0582  //0.0294
 		float Ti= (float)T_inum/(float)T_idnum;//60.0;//2400.0; // in secs //40.0; in  minutes
-		WORD Mode=ReturnFlag(SYSTEM_MODE_FLAG);
 		BYTE UpdateDCY=0;
 
 
                 Error=(Tsp/100.0)-(ActualTcv+(Tcv_Offset/100.0));
     
-//		if(Mode==DECON_MODE)
-//                {
-//
-//
-//                    if(Tsp<=3800)
-//                    {
-//                        DutyCycle=0.0;
-//                        return 1;
-//                    }
-//                }
 
 
-		if(Tsp>6000)CObias=95;
+		if(Tsp>6000)CObias=85;
 		else if(Tsp<=6000 && Tsp>=5500)
 			{
 				Kc*=2.0;
@@ -406,9 +349,10 @@ void RTCEventPumpChamberOff(void)
 
 void Event_Temp_Supervisory(void)
 {
+    WORD Mode=ReturnFlag(SYSTEM_MODE_FLAG);
     float Error;
     Error=(Tsp/100.0)-(ActualTcv+(Tcv_Offset/100.0));
-    if(Error>=0.5)
+    if(Error>=0.5 && Mode==NORMAL_MODE)
     {
         asm("RESET");
 

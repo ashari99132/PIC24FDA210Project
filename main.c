@@ -96,6 +96,7 @@ int main(void)
 	UpdateSystemSensor();
 	EventUpdateAlarmContactRelay();
         RTCEventPumpChamberOn();
+        SetOutPut(J57_WATER_VALVE,1);
  //       StartTimerRTC(COLD_CTL_ENABLE_ID,ONCE,2*MINUTE);
 //    Exp_FailSafe_Relay_On();
 //	FailSafe_Relay_On();
@@ -210,7 +211,7 @@ static void InitializeBoard(void)
 //	CNPU3bits.CN47PUE=0;
 //	CNEN3bits.CN45IE=1;				//pin 6 (CN45) as LAN_INT interrupt
 	
-
+        TRISEbits.TRISE2=1;	//input TRIAC status
 
 	
 	

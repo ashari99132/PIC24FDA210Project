@@ -2,7 +2,7 @@
     <type>com.microchip.mplab.nbide.embedded.makeproject</type>
     <configuration>
         <data xmlns="http://www.netbeans.org/ns/make-project/1">
-            <name>OMB701 v2.3</name>
+            <name>OMB701 v2.4</name>
             <creation-uuid>b086a322-e194-40f0-9a20-81411abd5edf</creation-uuid>
             <make-project-type>0</make-project-type>
             <c-extensions>c</c-extensions>

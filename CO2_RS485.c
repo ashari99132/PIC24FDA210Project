@@ -5,6 +5,7 @@ CO2_RS485.c
 #include "CO2_RS485.h"
 
 char CO2RS485_FinalBuffer[MAX_CO2RS485_BUFF];
+WORD InvalidReading;
 WORD CO2RS485_RxReadCnt=0;
 BYTE SendCount=0;
 void EventUpdateRS485CO2Sensor (void)
@@ -60,13 +61,18 @@ void EventRS485CO2Sensor_RxUpdate (void)
 					else if (*(pU1RxBuffer+c)=='*') 
 						{
                                                         CO2cv=0;
-							SensorStatus|=FLAG_IRCO2_ERROR;
+                                                        if(InvalidReading++>CO2RS485_INVALID_READ_MAX_CNT)
+                                                        {
+                                                            SensorStatus|=FLAG_IRCO2_ERROR;
+                                                            InvalidReading=CO2RS485_INVALID_READ_MAX_CNT;
+                                                        }
 							break;
 						}						
 					c++; 
 					}
 				if (d>0)
 					{
+                                                InvalidReading=0;
 						SensorStatus&=~FLAG_IRCO2_ERROR;
 						CO2ppm=StringToLONG(&CO2RS485_FinalBuffer[0]);
 						CO2cv=CO2ppm/100;

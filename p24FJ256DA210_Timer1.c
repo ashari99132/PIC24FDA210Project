@@ -46,6 +46,7 @@ void __attribute__ ((interrupt,no_auto_psv)) _T1Interrupt (void)
   TMR1=0x0000;  //clear the contents of the timer register.
   if (Counter1++>60000)Counter1=0;	
   RunForeGroundEvents();
+  TriacDebounceCntDown();
   IFS0bits.T1IF = 0;         //clear the interrupt status of Timer 1
 }
 

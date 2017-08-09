@@ -113,6 +113,7 @@ enum OnOffType{
 #define NONC_CONTACT_J7		LATEbits.LATE5
 #define BATT_CUTOFF			LATGbits.LATG12
 #define BATT_MEASURE		LATGbits.LATG13
+#define EXPANSION_RELAY_PORT		LATGbits.LATG14
 
 //Shaker outputs
 #define ILLUMINATION_J14	DIG_OUT6

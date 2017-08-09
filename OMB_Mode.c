@@ -79,6 +79,7 @@ void Set_NormalMode(void)
     pTsp=&Tsp;
     pTcv_Offset=&Tcv_Offset;
 WORDTOBYTE tempValue;
+WORD DoorClose = ReturnFlag(OMB_SWITCHES_STATUS_FLAG)&DOOR_SW_CLOSE;
 //WORD Options=ReturnFlag(OMB_CELSAFE_OPT_FLAG);
 
 EEPROM_Read(0x0000, &tempValue.bytes[0], 2);
@@ -108,7 +109,7 @@ FailSafe_Relay_On();
 //Stop_PID_Heater();
 EventFanDeconOff();
 SetCOBias(0.0);
-//EventPumpChamberOn();
+if(DoorClose)EventPumpChamberOn();
 //RTCEventPumpChamberOn();
 }
 
